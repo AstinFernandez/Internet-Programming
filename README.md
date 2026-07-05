@@ -87,3 +87,146 @@ tab and watch both sets of requests happen if you want to see it in action.
   and see how it trades off "freshness" against extra server requests.
 - Swap `chats.json` / `users.json` for a real MySQL database and rewrite the
   PHP to use `mysqli` or `PDO` instead of `file_get_contents()`.
+---
+# Project Notes – Architecture Review
+
+## Summary
+
+After reviewing the current codebase, I identified that the project currently runs a hybrid architecture combining:
+- Node.js (Express) backend
+- PHP backend
+- Static frontend (HTML/CSS/JS)
+- JSON files acting as a temporary database
+
+While this works technically, it introduces unnecessary complexity for a coursework project that is intended to demonstrate fundamentals of PHP, JavaScript, HTML, CSS, and MySQL.
+
+---
+
+## Current Architecture (as implemented)
+
+### 1. Node.js Layer
+- `server.js` serves:
+  - `/api/posts`
+  - `/api/friends`
+  - `/api/chats/:id/messages`
+- Stores all data in in-memory JavaScript arrays
+- No persistence (data resets on restart)
+
+### 2. PHP Layer
+- Handles chat list and profile-related endpoints
+- Uses JSON files under `php/data/` as a pseudo-database
+- Includes session handling and CORS configuration
+
+### 3. Frontend Layer
+- HTML/CSS/JS in `public/`
+- Uses `fetch()` to communicate with:
+  - Node APIs (port 3000)
+  - PHP endpoints (previously port 8000, now Apache)
+- Mixed dependency on two backend systems
+
+---
+
+## Issues with Current Design
+
+1. Multiple backend systems (Node + PHP) in the same project
+2. No real database (only JSON files in Node and PHP)
+3. Inconsistent API structure
+4. Frontend depends on different servers/ports
+5. Over-engineered for the scope of the assignment
+
+This makes the project harder to explain, maintain, and defend during evaluation.
+
+---
+
+## Recommended Simplified Architecture
+
+The project should be reduced to a single-stack PHP application using MySQL.
+
+### Final Architecture
+``` bash
+Browser
+    ↓
+HTML / CSS / JavaScript
+    ↓(AJAX / fetch)
+PHP (Apache)
+    ↓
+MySQL Database
+```
+
+---
+
+## Proposed Final Project Structure
+
+```bash
+chat-app/
+├── css/
+│ └── style.css
+├── js/
+│ └── app.js
+├── php/
+│ ├── db.php
+│ ├── login.php
+│ ├── send_message.php
+│ ├── get_messages.php
+│ └── logout.php
+├── sql/
+│ └── schema.sql
+├── index.html
+└── README.md
+``` 
+---
+
+## Database Design (MySQL)
+
+### users
+- id (PK)
+- username
+
+### messages
+- id (PK)
+- user_id (FK)
+- message
+- created_at
+
+---
+
+## Core Application Flow
+
+1. User opens `index.html`
+2. User enters username (session-based login)
+3. JavaScript sends requests using `fetch()`
+4. PHP handles requests:
+   - `send_message.php` → INSERT into MySQL
+   - `get_messages.php` → SELECT from MySQL
+5. Frontend polls messages every 2–3 seconds (AJAX polling)
+6. Messages are rendered dynamically in the UI
+
+---
+
+## What Should Be Removed
+
+To align with the simplified architecture:
+- `server.js`
+- `package.json`
+- `package-lock.json`
+- Node API routes
+- JSON-based “database” files (`php/data/`)
+
+---
+
+## Objective
+
+The goal is to demonstrate understanding of:
+- PHP backend development
+- MySQL database operations (CRUD)
+- JavaScript AJAX polling
+- HTML/CSS UI construction
+- Session handling
+
+Not to build a large-scale system or multi-framework application.
+
+---
+
+## Next Step
+
+Refactor the project to a single PHP + MySQL backend and ensure the frontend only communicates with PHP endpoints served via Apache.
