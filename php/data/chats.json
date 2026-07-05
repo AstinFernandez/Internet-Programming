@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": "Elena Rodriguez",
+    "avatar": "https://i.pravatar.cc/100?img=45",
+    "lastMessage": "Can you check the live location link I sent?",
+    "time": "Just now",
+    "unread": 2,
+    "isGroup": false
+  },
+  {
+    "id": 2,
+    "name": "Design Sync",
+    "avatar": "https://i.pravatar.cc/100?img=68",
+    "lastMessage": "Marcus: The prototype looks amazing!",
+    "time": "12:42 PM",
+    "unread": 0,
+    "isGroup": true,
+    "memberCount": 4
+  },
+  {
+    "id": 3,
+    "name": "Julian Sterling",
+    "avatar": "https://i.pravatar.cc/100?img=15",
+    "lastMessage": "Let's reschedule the briefing for Monday.",
+    "time": "Yesterday",
+    "unread": 0,
+    "isGroup": false
+  },
+  {
+    "id": 4,
+    "name": "Sarah Chen",
+    "avatar": "https://i.pravatar.cc/100?img=47",
+    "lastMessage": "📍 Shared a location",
+    "time": "Thursday",
+    "unread": 0,
+    "isGroup": false
+  },
+  {
+    "id": 5,
+    "name": "Cooper (The Dog)",
+    "avatar": "https://i.pravatar.cc/100?img=8",
+    "lastMessage": "📷 Sent a photo",
+    "time": "Aug 12",
+    "unread": 0,
+    "isGroup": false
+  }
+]

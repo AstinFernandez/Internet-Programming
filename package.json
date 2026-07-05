@@ -1,0 +1,12 @@
+{
+  "name": "connect-app",
+  "version": "1.0.0",
+  "description": "A learner-friendly social/chat app built with Node.js + Express (Status feed & Chat) and PHP (Chat list & Profile).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
