@@ -12,9 +12,8 @@
     <div class="main-container">
 
         <!-- LOGIN -->
-        <div class="login" id="login">
-            <h3>Chat Login 1</h3>
-
+        <div class="login login-card" id="login">
+            <h3>Chat Login</h3>
             <input
                 type="text"
                 id="username"
@@ -35,26 +34,21 @@
                 <!-- Messages displayed here -->
                 <div class="chat-body" id="chatBox">
                 </div>
-
-
                 <!-- Message input -->
                 <div class="message-box">
 
                     <input
+                        class="message-input"
                         type="text"
                         id="message"
                         placeholder="Enter your message..."
                         onkeydown="if(event.key==='Enter') sendMessage();"
                     >
-
                     <button onclick="sendMessage()">
                         Send
                     </button>
-
                 </div>
-
             </div>
-
         </div>
 
     </div>

@@ -25,59 +25,31 @@ html {
   display: grid;
   border: 2px solid #c4c4c4;
   min-height: 95vh;
+  background-color: white;
   width: 70vw;
-  display: none;
   margin: auto;
   overflow-y: hidden;
   margin-top: 20px;
 }
 
+
 .chat-container {
   display: grid;
   border: 1px solid #c4c4c4;
+  background-color: #ccc;
 }
 
 .chat-body {
   height: 85vh;
   overflow-y: auto;
+  background-color: white;
 }
 
 .message-box {
   align-self: bottom;
 }
 
-.message {
-  background: rgb(225, 235, 225);
-  color: rgb(77, 73, 73);
-  padding: 7px;
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  width: auto;
-  max-width: 50%;
-  display: table;
-  clear: both;
-  border: 1px solid #ababab;
-}
 
-.message-left {
-  float: left;
-  background-color: #dcdcdc;
-  color: #252121;
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 2px;
-}
-
-.message-right {
-  float: right;
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 2px;
-}
 
 .message-username {
   font-weight: bold;
@@ -85,19 +57,7 @@ html {
   font-size: medium;
 }
 
-#message-input {
-  width: 95%;
-  height: 55px;
-  padding: 6px;
-  font-size: 19px;
-  margin-left: 28px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 2px;
-  border: 1px solid grey;
-  outline: none;
-}
+
 
 #user-login-input {
   width: 400px;
@@ -197,4 +157,101 @@ body {
 
 .login-card button:hover {
     background: #458393;
+}
+
+.message-input {
+  width: 95%;
+  height: 55px;
+  padding: 6px;
+  font-size: 19px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 2px;
+  border: 1px solid grey;
+  outline: none;
+}
+
+
+
+
+.message-box {
+    display: flex;
+    width: 100%;
+}
+
+.message-input {
+    flex: 7;
+}
+
+.message-box button {
+    flex: 3;
+    background: #34A99D;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+
+.message {
+    background: rgb(225, 235, 225);
+    color: rgb(33, 31, 31);
+
+    padding: 10px;
+    margin: 8px;
+
+    border-radius: 10px;
+    border: 1px solid #ababab;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+
+    width: fit-content;
+    max-width: 50%;
+}
+
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sent {
+    align-self: flex-end;
+    background: #34A99D;
+    color: white;
+}
+
+
+.received {
+    align-self: flex-start;
+    background: rgb(225, 235, 225);
+    color: rgb(33, 31, 31);
+}
+
+
+.message-user {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.message-text {
+    margin-top: 5px;
+}
+
+
+.message-time {
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.7;
 }

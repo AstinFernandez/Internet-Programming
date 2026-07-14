@@ -1,3 +1,5 @@
+let currentUser = "";
+
 function login() {
     const username = document.getElementById("username").value.trim();
 
@@ -15,15 +17,24 @@ function login() {
     })
     .then(response => response.json())
     .then(data => {
+
         if (data.success) {
+
+            // Store the logged-in username
+            currentUser = data.username;
+
             document.getElementById("login").style.display = "none";
             document.getElementById("chat").style.display = "block";
 
             loadMessages();
+
+            // Refresh messages every 2 seconds
             setInterval(loadMessages, 2000);
+
         } else {
             alert(data.error);
         }
+
     })
     .catch(error => {
         console.error(error);
@@ -52,6 +63,7 @@ function sendMessage() {
     });
 }
 
+
 function loadMessages() {
     fetch("php/get_messages.php")
         .then(response => response.json())
@@ -65,17 +77,28 @@ function loadMessages() {
                 const messageDiv = document.createElement("div");
                 messageDiv.classList.add("message");
 
+                // Align messages depending on sender
+                if (msg.username === currentUser) {
+                    messageDiv.classList.add("sent");
+                } else {
+                    messageDiv.classList.add("received");
+                }
+
+
                 const username = document.createElement("span");
                 username.classList.add("message-user");
                 username.textContent = msg.username;
+
 
                 const text = document.createElement("span");
                 text.classList.add("message-text");
                 text.textContent = msg.message;
 
+
                 const time = document.createElement("span");
                 time.classList.add("message-time");
                 time.textContent = msg.created_at;
+
 
                 messageDiv.appendChild(username);
                 messageDiv.appendChild(text);
@@ -86,5 +109,3 @@ function loadMessages() {
 
         });
 }
-
-//setInterval(loadMessages, 2000);
