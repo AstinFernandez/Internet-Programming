@@ -221,3 +221,92 @@ Elvis
 
 Send messages from both browsers.
 Confirm messages appear on both sides.
+
+---
+
+# Special Section for Windows Users
+
+Windows users should follow these additional steps to ensure the application runs correctly.
+
+## 1. Install and configure XAMPP
+
+The application requires:
+
+- Apache (to serve PHP files)
+- MySQL (for the database)
+
+Install XAMPP and start:
+
+- Apache
+- MySQL
+
+from the XAMPP Control Panel.
+
+---
+
+## 2. Place the project in the correct directory
+
+Move your project files to your XAMPP server's root directory:
+
+`C:\xampp\htdocs\`
+
+The final structure should look like:
+
+`C:\xampp\htdocs\Internet-Programming`
+
+### Project Directory Tree
+
+```text
+C:\xampp\htdocs\Internet-Programming
+│
+├── index.html
+├── css/
+├── js/
+├── php/
+└── sql/
+```
+## 3. Configure the database
+Open phpMyAdmin:
+Go to http://localhost/phpmyadmin in your browser.
+
+Create a database:
+
+Name the new database: 
+``` text 
+chat_app
+```
+
+Import the database schema:
+
+Import the SQL file located at: sql/schema.sql
+## 4. Update database credentials
+Open the file: php/db.php
+
+Ensure the database configuration matches your local MySQL setup. 
+
+For a default XAMPP installation, use the following configuration:
+``` php
+<?php
+
+$host = "127.0.0.1";
+$user = "root";
+$pass = "";
+$db   = "chat_app";
+
+$conn = new mysqli($host,$user, $pass,$db);
+
+?>
+```
+## 5. Access the application correctly
+Do not double-click or open index.html directly from your File Explorer.
+
+http://localhost/Internet-Programming/
+
+## 6. Verification
+After completing the setup:
+
+1. Open the application in two different browser windows (or one normal and one incognito).
+
+2. Log in with different usernames.
+
+3. Send a few messages to verify they are sent, saved to your MySQL database, and retrieved correctly in real-time.
